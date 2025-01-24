@@ -55,26 +55,99 @@ class _OffrePageState extends State<OffrePage> {
                       width: 350.0,
                       height: 100.0,
                       child: Card(
-                        color: Colors.white,
-                        elevation: 5.0,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Column(
-                          children: [
-                            Text(
-                              "Offre de maçon",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold
-                              ),
-                              textAlign: TextAlign.start,
-                            )
-                          ],
+                        child: ListTile(
+                          title: Text('Offre de maçon'),
+                          subtitle: Text('Abidjan - 50,000 CFA'),
+                          trailing: TextButton(
+                            onPressed: () {},
+                            child: Text('Voir plus'),
+                          ),
                         ),
                       ),
-                    )
+                    ),
+                    SizedBox(
+                      width: 350,
+                      height: 100,
+                      child:   Card(
+                        child: ListTile(
+                          title: Text('Offre de ménage'),
+                          subtitle: Text('Yamoussoukro - 30,000 CFA'),
+                          trailing: TextButton(
+                            onPressed: () {},
+                            child: Text('Voir plus'),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 350,
+                      height: 100,
+                      child:   Card(
+                        child: ListTile(
+                          title: Text('Offre de ménage'),
+                          subtitle: Text('Yamoussoukro - 30,000 CFA'),
+                          trailing: TextButton(
+                            onPressed: () {},
+                            child: Text('Voir plus'),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 350,
+                      height: 100,
+                      child:   Card(
+                        child: ListTile(
+                          title: Text('Offre de ménage'),
+                          subtitle: Text('Yamoussoukro - 30,000 CFA'),
+                          trailing: TextButton(
+                            onPressed: () {},
+                            child: Text('Voir plus'),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 350,
+                      height: 100,
+                      child:   Card(
+                        child: ListTile(
+                          title: Text('Offre de ménage'),
+                          subtitle: Text('Yamoussoukro - 30,000 CFA'),
+                          trailing: TextButton(
+                            onPressed: () {},
+                            child: Text('Voir plus'),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 350,
+                      height: 100,
+                      child:   Card(
+                        child: ListTile(
+                          title: Text('Offre de ménage'),
+                          subtitle: Text('Yamoussoukro - 30,000 CFA'),
+                          trailing: TextButton(
+                            onPressed: () {},
+                            child: Text('Voir plus'),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
+                ),
+                Container(
+                  width: double.infinity,
+                  height: 50.0,
+                  color: Color(0xFF1F2937),
+                  child: Center(
+                    child: Text(
+                      "© 2024 TravailTemporaire. Tous droits réservés.",
+                      style: TextStyle(color: Colors.white),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
                 )
               ],
             ),

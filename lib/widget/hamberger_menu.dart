@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:job_platform/page/login/connexion_page.dart';
 
 import '../page/offre_page.dart';
 
@@ -72,7 +73,9 @@ class _HambergerMenuState extends State<HambergerMenu> {
             leading: Icon(Icons.person),
             title: Text('Connexion'),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context)=> ConnexionPage())
+              );
               // Naviguer vers la page favoris
             },
           ),
