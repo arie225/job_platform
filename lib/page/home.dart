@@ -210,7 +210,7 @@ class _HomePageState extends State<HomePage> {
               width: double.infinity,
               padding: EdgeInsets.all(20),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   // Première stat
                   Column(
@@ -268,7 +268,7 @@ class _HomePageState extends State<HomePage> {
                         'Employeurs satisfaits',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 12,
+                          fontSize: 8,
                         ),
                       ),
                     ],
@@ -276,19 +276,7 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            //SizedBox(height: 10.0,),
-            Container(
-              width: double.infinity,
-              height: 50.0,
-              color: Color(0xFF1F2937),
-              child: Center(
-                child: Text(
-                  "© 2024 TravailTemporaire. Tous droits réservés.",
-                  style: TextStyle(color: Colors.white),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            )
+
           ],
         ),
       )),

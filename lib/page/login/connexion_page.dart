@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:job_platform/page/login/inscription_page.dart';
 
+import '../../back end/api_service.dart';
+import '../home.dart';
+
 class ConnexionPage extends StatefulWidget {
   const ConnexionPage({super.key});
 
@@ -11,6 +14,60 @@ class ConnexionPage extends StatefulWidget {
 class _ConnexionPageState extends State<ConnexionPage> {
   final _formKey = GlobalKey<FormState>();
   bool _obscurePassword = true;
+  bool _isLoading = false;
+
+  // Contrôleurs pour les champs de texte
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  // Instance du service d'authentification
+  final AuthService _authService = AuthService();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  // Fonction de connexion
+  Future<void> _handleLogin() async {
+    if (_formKey.currentState?.validate() ?? false) {
+      setState(() => _isLoading = true);
+
+      try {
+        final result = await _authService.login(
+          _emailController.text,
+          _passwordController.text,
+        );
+
+        setState(() => _isLoading = false);
+
+        if (result['success']) {
+          // Connexion réussie
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Connexion réussie!')),
+          );
+           //TODO: Naviguer vers la page d'accueil
+           Navigator.of(context).pushReplacement(
+             MaterialPageRoute(builder: (context) => HomePage()),
+           );
+        } else {
+          // Afficher le message d'erreur
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(result['message'] ?? 'Erreur de connexion')),
+          );
+        }
+      } catch (e) {
+        setState(() => _isLoading = false);
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Erreur de connexion au serveur')),
+        );
+      }
+    }
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +108,7 @@ class _ConnexionPageState extends State<ConnexionPage> {
                   const SizedBox(height: 48),
                   // Champ Email
                   TextFormField(
+                    controller: _emailController,  // Ajouter le contrôleur
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
                       labelText: "Email",
@@ -79,6 +137,7 @@ class _ConnexionPageState extends State<ConnexionPage> {
                   const SizedBox(height: 20),
                   // Champ Mot de passe
                   TextFormField(
+                    controller: _passwordController,
                     obscureText: _obscurePassword,
                     decoration: InputDecoration(
                       labelText: "Mot de passe",
@@ -136,11 +195,7 @@ class _ConnexionPageState extends State<ConnexionPage> {
                     width: double.infinity,
                     height: 50,
                     child: ElevatedButton(
-                      onPressed: () {
-                        if (_formKey.currentState?.validate() ?? false) {
-                          // Logique de connexion
-                        }
-                      },
+                      onPressed: _isLoading ? null : _handleLogin,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.blue,
                         foregroundColor: Colors.white,
@@ -149,7 +204,9 @@ class _ConnexionPageState extends State<ConnexionPage> {
                         ),
                         elevation: 2,
                       ),
-                      child: const Text(
+                      child: _isLoading
+                          ? const CircularProgressIndicator(color: Colors.white)
+                          : const Text(
                         "SE CONNECTER",
                         style: TextStyle(
                           fontSize: 16,
@@ -185,6 +242,7 @@ class _ConnexionPageState extends State<ConnexionPage> {
                       ),
                     ],
                   ),
+
                 ],
               ),
             ),

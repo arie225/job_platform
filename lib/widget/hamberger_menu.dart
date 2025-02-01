@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:job_platform/page/home.dart';
 import 'package:job_platform/page/login/connexion_page.dart';
 
 import '../page/offre_page.dart';
@@ -55,7 +56,9 @@ class _HambergerMenuState extends State<HambergerMenu> {
             title: Text('Accueil'),
             onTap: () {
               // Action quand on clique sur Accueil
-              Navigator.pop(context); // Ferme le drawer
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context)=> HomePage())
+              );
             },
           ),
           ListTile(

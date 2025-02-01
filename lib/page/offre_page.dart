@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:job_platform/page/detail_offre_page.dart';
 import 'package:job_platform/widget/appbar_widget.dart';
 import 'package:job_platform/widget/hamberger_menu.dart';
 
@@ -59,7 +60,11 @@ class _OffrePageState extends State<OffrePage> {
                           title: Text('Offre de maçon'),
                           subtitle: Text('Abidjan - 50,000 CFA'),
                           trailing: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context)=> DetailOffrePage())
+                              );
+                            },
                             child: Text('Voir plus'),
                           ),
                         ),
@@ -137,18 +142,7 @@ class _OffrePageState extends State<OffrePage> {
                     ),
                   ],
                 ),
-                Container(
-                  width: double.infinity,
-                  height: 50.0,
-                  color: Color(0xFF1F2937),
-                  child: Center(
-                    child: Text(
-                      "© 2024 TravailTemporaire. Tous droits réservés.",
-                      style: TextStyle(color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                )
+                SizedBox(height: 10.0)
               ],
             ),
           )

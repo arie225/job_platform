@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:job_platform/page/login/connexion_page.dart';
 
+import '../../back end/api_service.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
@@ -11,6 +13,9 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String? selectedValue;
   final _formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final nomController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -180,6 +185,31 @@ class _LoginPageState extends State<LoginPage> {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
+                        onPressed: () async {
+                          if (_formKey.currentState?.validate() ?? false) {
+                            final userData = {
+                              'nom': nomController.text,
+                              'email': emailController.text,
+                              'password': passwordController.text,
+                              'compte': selectedValue,
+                              // Ajoutez les autres champs nécessaires
+                            };
+
+                            final authService = AuthService();
+                            final result = await authService.register(userData);
+
+                            if (result['success']) {
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(builder: (context) => ConnexionPage()),
+                              );
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text(result['message'])),
+                              );
+                            }
+                          }
+                        };
                         if (_formKey.currentState?.validate() ?? false) {
                           // Logique d'inscription
                         }
